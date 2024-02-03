@@ -15,5 +15,8 @@ after_success:
   - docker build -t sbk888sbk/multi-server ./server
   - docker build -t sbk888sbk/multi-worker ./worker
   - docker build -t sbk888sbk/multi-ngix ./ngix
-
-
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push sbk888sbk/multi-client
+  - docker push sbk888sbk/multi-server
+  - docker push sbk888sbk/multi-worker
+  - docker push sbk888sbk/multi-ngix
